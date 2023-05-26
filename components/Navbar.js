@@ -1,14 +1,16 @@
 import Link from "next/link";
-import Logo from "@/components/navbar/Logo";
+import Logo from "@/components/Logo";
 
 export default function Navbar() {
 
+    const companyName = "한양인팩"
+
     const navigation = [
-        "회사소개",
-        "포트폴리오",
-        "견적문의",
-        "Company",
-        "Blog",
+        {menu: "메뉴1", url: "/menu1"},
+        {menu: "메뉴2", url: "/menu2"},
+        {menu: "메뉴3", url: "/menu3"},
+        {menu: "메뉴4", url: "/menu4"},
+        {menu: "메뉴5", url: "/menu5"}
     ]
 
     return (
@@ -16,16 +18,16 @@ export default function Navbar() {
             <nav
                 className="container relative flex flex-wrap items-center justify-between p-8 mx-auto lg:justify-between xl:px-0">
                 {/* Logo  */}
-                <Logo navigation={navigation}/>
+                <Logo companyName={companyName} navigation={navigation}/>
 
                 {/* menu  */}
                 <div className="hidden text-center lg:flex lg:items-center">
                     <ul className="items-center justify-end flex-1 pt-6 list-none lg:pt-0 lg:flex">
-                        {navigation.map((menu, index) => (
+                        {navigation.map((item, index) => (
                             <li className="mr-3 nav__item" key={index}>
-                                <Link href="/public"
+                                <Link href={navigation[index].url}
                                       className="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800">
-                                    {menu}
+                                    {navigation[index].menu}
                                 </Link>
                             </li>
                         ))}
